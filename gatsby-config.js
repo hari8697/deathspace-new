@@ -2,10 +2,11 @@ module.exports = {
     siteMetadata: {
         title: `DeathSpace Design`,
         description: `Portfolio website for DeathSpace Design`,
+        author: `@deathspacedesign`,
     },
     plugins: [
-      `gatsby-plugin-sass`,
-      `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-sass`,
+        `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -31,4 +32,4 @@ module.exports = {
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
     ],
-};
+}

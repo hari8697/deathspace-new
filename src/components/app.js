@@ -1,26 +1,18 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
+
+//static files
 import "../styles/app.scss";
 
-export default function App() {
-    const [isOpen, setIsOpen] = useState(false);
+//components
+import ProcessIcons from "./elements/ProcessIcons";
+import Section1 from "./sections/section1";
 
+const App = () => {
     return (
-        // <motion.div
-        //     layout
-        //     data-isOpen={isOpen}
-        //     initial={{ borderRadius: 50 }}
-        //     className="parent"
-        //     onClick={() => setIsOpen(!isOpen)}
-        // >
-        //     <motion.div layout className="child" />
-        // </motion.div>
-        <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-        >
-            Hello there!
-        </motion.div>
+        <div className="App">
+            <Section1></Section1>
+        </div>
     );
-}
+};
+
+export default App;
