@@ -1,6 +1,6 @@
-import React from "react";
-import App from "../components/app";
-import { Helmet } from "react-helmet";
+import React from "react"
+import App from "../components/home/app"
+import { Helmet } from "react-helmet"
 
 export default function Index() {
     return (
@@ -11,5 +11,5 @@ export default function Index() {
             </Helmet>
             <App />
         </div>
-    );
+    )
 }
