@@ -25,39 +25,33 @@ const Section1 = () => {
     }
     const { scrollYProgress } = useViewportScroll()
     const scrollDistance = [0, 0.1] // the amount to scroll to play the animations
-    const yValues = () => {
+    const halfScrollDistance = [0.065, 0.1] // the amount to scroll to play the animations
+    const animValues = () => {
         if (windowSize.width > 768) {
             return {
                 scroll: scrollDistance,
                 up: ["calc(45vh + 20px)", "-0.5vh"],
-            }
-        } else {
-            return {
-                scroll: scrollDistance,
-                up: ["calc(40vh + 0px)", "calc(0vh + 8px)"],
-            }
-        }
-    }
-    const y = useTransform(scrollYProgress, yValues().scroll, yValues().up)
-    const progress = useTransform(scrollYProgress, scrollDistance, [0, 100])
-
-    const scaleValues = () => {
-        if (windowSize.width > 768) {
-            return {
-                scroll: scrollDistance,
                 scale: [1, 0.4],
             }
         } else {
             return {
                 scroll: scrollDistance,
+                up: ["calc(40vh + 0px)", "calc(0vh + 8px)"],
                 scale: [1, 0.5],
             }
         }
     }
+    const y = useTransform(
+        scrollYProgress,
+        animValues().scroll,
+        animValues().up
+    )
+    const progress = useTransform(scrollYProgress, scrollDistance, [0, 100])
+    const opacity = useTransform(scrollYProgress, halfScrollDistance, [0, 1])
     const scale = useTransform(
         scrollYProgress,
-        scaleValues().scroll,
-        scaleValues().scale
+        animValues().scroll,
+        animValues().scale
     )
 
     let variants = {
@@ -112,17 +106,20 @@ const Section1 = () => {
 
     return (
         <div className="section__one">
-            <AnimatePresence>
-                {state && (
-                    <motion.div
-                        variants={variants2}
-                        initial={"hidden"}
-                        animate={"visible"}
-                        exit={"hidden"}
-                        className="navbar"
-                    ></motion.div>
-                )}
-            </AnimatePresence>
+            {/* <AnimatePresence> */}
+            {/* {state && ( */}
+            <motion.div
+                variants={variants2}
+                initial={"hidden"}
+                // animate={"visible"}
+                // exit={"hidden"}
+                style={{
+                    opacity,
+                }}
+                className="navbar"
+            ></motion.div>
+            {/* )} */}
+            {/* </AnimatePresence> */}
             <div className="wrapper">
                 <motion.img
                     src={background}
