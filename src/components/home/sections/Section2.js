@@ -4,6 +4,7 @@ import styled from "styled-components"
 import {
     motion,
     useViewportScroll,
+    useMotionValue,
     useTransform,
     AnimatePresence,
 } from "framer-motion"
@@ -22,27 +23,33 @@ const Section2 = (props) => {
         line-height: 1.5rem;
         color: #fff;
         opacity: 0.4;
+        width: auto;
     `
 
     const Para = styled(motion.p)`
         color: #fff;
+        max-width: 80ch;
         opacity: 0.9;
         margin-top: 1rem;
     `
 
     const scrollDistance = [0.1, 0.2]
+    const scrollDistanceNext = [0.15, 0.23]
+
     const progress = useTransform(props.scrollYProgress, scrollDistance, [
         0,
         100,
     ])
-    // const opacity = useTransform(props.scrollYProgress, scrollDistance, [0, 1])
+    const opacity = useTransform(props.scrollYProgress, scrollDistanceNext, [
+        0,
+        1,
+    ])
     const y = useTransform(props.scrollYProgress, scrollDistance, [20, 0])
 
     const [state, setState] = useState(false)
 
     useEffect(() => {
         progress.onChange(() => {
-            console.log(progress.get())
             progress.get() >= 30 ? setState(true) : setState(false)
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,23 +60,22 @@ const Section2 = (props) => {
             y: 20,
             opacity: 0,
             transition: {
-                duration: 0.5,
-                ease: "easeOut",
-                staggerChildren: 0.5,
+                duration: 0.8,
+                ease: "easeIn",
             },
         },
         opacityHidden: {
             opacity: 0,
             transition: {
-                duration: 0.5,
-                ease: "easeOut",
+                duration: 0.3,
+                ease: "easeIn",
             },
         },
         opacityVisible: {
             opacity: 1,
             transition: {
-                delay: 0.3,
-                duration: 0.7,
+                delay: 0.6,
+                duration: 0.9,
                 ease: "easeOut",
             },
         },
@@ -79,7 +85,7 @@ const Section2 = (props) => {
             transition: {
                 duration: 0.5,
                 ease: "easeOut",
-                staggerChildren: 0.5,
+                staggerChildren: 0.3,
             },
         },
         visible2: {
@@ -91,9 +97,28 @@ const Section2 = (props) => {
             },
         },
     }
+
+    let childVariants = {
+        hidden: {
+            y: 20,
+            opacity: 0,
+            transition: {
+                duration: 0.8,
+                ease: "easeOut",
+            },
+        },
+        visible: {
+            y: 0,
+            opacity: 0.4,
+            transition: {
+                duration: 0.5,
+                ease: "easeOut",
+            },
+        },
+    }
     return (
         //  <Section>
-        <div style={{ position: "relative", padding: "30vh 21vw" }}>
+        <div className="section__two">
             <Particles
                 style={{
                     position: "absolute",
@@ -107,21 +132,27 @@ const Section2 = (props) => {
 
             <AnimatePresence>
                 {state && (
-                    <div>
+                    <motion.div
+                        variants={variants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        className="s2textContainer"
+                    >
                         <Title
                             variants={variants}
-                            initial={"hidden"}
-                            animate={"visible"}
-                            exit={"hidden"}
+                            // initial={"hidden"}
+                            // animate={"visible"}
+                            // exit={"hidden"}
                         >
                             Design,
                         </Title>
 
                         <Title
-                            variants={variants}
-                            initial={"hidden"}
-                            animate={"visible2"}
-                            exit={"hidden"}
+                            variants={childVariants}
+                            // initial={"hidden"}
+                            // animate={"visible2"}
+                            // exit={"hidden"}
                         >
                             with purpose.
                         </Title>
@@ -129,7 +160,6 @@ const Section2 = (props) => {
                             variants={variants}
                             initial={"opacityHidden"}
                             animate={"opacityVisible"}
-                            exit={"opacityHidden"}
                         >
                             Hi! I'm DeathSpace, a front-end web developer &
                             UI/UX enthusiast from Bangalore, India. I specialize
@@ -139,7 +169,7 @@ const Section2 = (props) => {
                             animations. Please have a look around & don't forget
                             to play with the stars!
                         </Para>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </div>

@@ -129,7 +129,14 @@ const Section1 = () => {
                     animate={"visible"}
                     className="bg"
                 />
-                <video className="bg" autoPlay loop muted>
+                <video
+                    className="bg"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="none"
+                >
                     <source src={video} type="video/mp4" />
                 </video>
             </div>
