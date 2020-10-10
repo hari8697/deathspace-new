@@ -1,15 +1,11 @@
 import React from "react"
-import {
-    motion,
-    useViewportScroll,
-    useTransform,
-    AnimatePresence,
-} from "framer-motion"
+import { useViewportScroll } from "framer-motion"
 import Particles from "react-particles-js"
 
 //static files
 import "../../styles/app.scss"
 import particlesJSON from "../../assets/particles.json"
+import { variants, childVariants } from "../motion/variants"
 
 //components
 import Section1 from "./sections/Section1"
@@ -33,8 +29,16 @@ const App = () => {
                     height="200vh"
                     params={particlesJSON}
                 />
-                <Section2 scrollYProgress={scrollYProgress}></Section2>
-                <Section3 scrollYProgress={scrollYProgress}></Section3>
+                <Section2
+                    scrollYProgress={scrollYProgress}
+                    variants={variants}
+                    childVariants={childVariants}
+                ></Section2>
+                <Section3
+                    scrollYProgress={scrollYProgress}
+                    variants={variants}
+                    childVariants={childVariants}
+                ></Section3>
             </div>
         </div>
     )

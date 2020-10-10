@@ -82,8 +82,11 @@ html {
     position: relative;
 }
 
-.section__two {
+.particle__section {
     pointer-events: none;
+}
+
+.section__two {
     position: relative;
     padding: 30vh 21vw;
 }
