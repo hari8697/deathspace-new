@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react"
 import { motion, useTransform, AnimatePresence } from "framer-motion"
 import { Section } from "../../styled/textElements"
 import Title from "../../elements/Title"
-import Paragraph from "../../elements/Paragraph"
+import ProcessIcons from "../../elements/ProcessIcons"
 
-const Section3 = (props) => {
-    const scrollDistance = [0.35, 0.45]
+const Section4 = (props) => {
+    const scrollDistance = [0.55, 0.65]
     const progress = useTransform(props.scrollYProgress, scrollDistance, [
         0,
         100,
@@ -16,13 +16,13 @@ const Section3 = (props) => {
             progress.get() >= 30 ? setState(true) : setState(false)
         })
 
-        window.scrollY >= 1600 && setState(true)
-        // console.log(window.scrollY)
+        window.scrollY >= 2600 && setState(true)
+        console.log(window.scrollY)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
-        <Section className="particle__section">
+        <Section className="">
             <AnimatePresence>
                 {state && (
                     <motion.div
@@ -30,21 +30,11 @@ const Section3 = (props) => {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="s2textContainer"
+                        className=""
                     >
-                        <Title variants={props.childVariants} value="Work" />
-                        <Paragraph
-                            variants={props.variants}
-                            value={
-                                <>
-                                    Okay, enough chit-chat, where's the proof
-                                    you ask?
-                                    <br />
-                                    Here are some of my selected projects for
-                                    your viewing pleasure.
-                                </>
-                            }
-                        />
+                        <Title variants={props.childVariants} value="Process" />
+
+                        <ProcessIcons />
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -52,4 +42,4 @@ const Section3 = (props) => {
     )
 }
 
-export default Section3
+export default Section4

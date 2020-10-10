@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import React, { useState } from "react"
+import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion"
 
 const ProcessIcons = () => {
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState(null)
     const items = [
         { id: 1, title: "Think" },
         { id: 2, title: "QWasd" },
@@ -10,7 +10,7 @@ const ProcessIcons = () => {
         { id: 4, title: "qwe" },
         { id: 5, title: "arsdf" },
         { id: 6, title: "qw3e" },
-    ];
+    ]
     return (
         <div className="circle_wrapper">
             <AnimateSharedLayout type="crossfade">
@@ -21,9 +21,7 @@ const ProcessIcons = () => {
                         className={
                             selectedId === item.id ? "circle sel" : "circle"
                         }
-                    >
-                        <motion.h5>{item.title}</motion.h5>
-                    </motion.div>
+                    ></motion.div>
                 ))}
 
                 <AnimatePresence>
@@ -38,7 +36,7 @@ const ProcessIcons = () => {
                 </AnimatePresence>
             </AnimateSharedLayout>
         </div>
-    );
-};
+    )
+}
 
-export default ProcessIcons;
+export default ProcessIcons

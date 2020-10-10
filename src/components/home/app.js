@@ -11,6 +11,7 @@ import { variants, childVariants } from "../motion/variants"
 import Section1 from "./sections/Section1"
 import Section2 from "./sections/Section2"
 import Section3 from "./sections/Section3"
+import Section4 from "./sections/Section4"
 
 const App = () => {
     const { scrollYProgress } = useViewportScroll()
@@ -39,6 +40,11 @@ const App = () => {
                     variants={variants}
                     childVariants={childVariants}
                 ></Section3>
+                <Section4
+                    scrollYProgress={scrollYProgress}
+                    variants={variants}
+                    childVariants={childVariants}
+                ></Section4>
             </div>
         </div>
     )
