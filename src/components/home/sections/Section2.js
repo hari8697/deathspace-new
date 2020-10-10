@@ -1,38 +1,8 @@
 import React, { useState, useEffect } from "react"
-import Particles from "react-particles-js"
-import styled from "styled-components"
-import {
-    motion,
-    useViewportScroll,
-    useMotionValue,
-    useTransform,
-    AnimatePresence,
-} from "framer-motion"
-
-//static files
-import particlesJSON from "../../../assets/particles.json"
+import { motion, useTransform, AnimatePresence } from "framer-motion"
+import { Section, Title, Para } from "../styled/textElements"
 
 const Section2 = (props) => {
-    const Section = styled(motion.div)`
-        position: relative;
-        padding: 30vh 21vw;
-    `
-
-    const Title = styled(motion.h1)`
-        font-size: 1.728rem;
-        line-height: 1.5rem;
-        color: #fff;
-        opacity: 0.4;
-        width: auto;
-    `
-
-    const Para = styled(motion.p)`
-        color: #fff;
-        max-width: 80ch;
-        opacity: 0.9;
-        margin-top: 1rem;
-    `
-
     const scrollDistance = [0.1, 0.2]
     const scrollDistanceNext = [0.15, 0.23]
 
@@ -52,6 +22,8 @@ const Section2 = (props) => {
         progress.onChange(() => {
             progress.get() >= 30 ? setState(true) : setState(false)
         })
+
+        window.scrollY >= 350 && setState(true)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -117,19 +89,8 @@ const Section2 = (props) => {
         },
     }
     return (
-        //  <Section>
-        <div className="section__two">
-            <Particles
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                }}
-                width="100%"
-                height="100vh"
-                params={particlesJSON}
-            />
-
+        <Section>
+            {/* <div className=""> */}
             <AnimatePresence>
                 {state && (
                     <motion.div
@@ -172,8 +133,8 @@ const Section2 = (props) => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
-        // </Section>
+            {/* </div> */}
+        </Section>
     )
 }
 

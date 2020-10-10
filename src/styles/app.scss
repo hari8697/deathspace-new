@@ -11,6 +11,17 @@ html {
     color: #fff;
 }
 
+::-moz-selection {
+    /* Code for Firefox */
+    color: white;
+    background: blueviolet;
+}
+
+::selection {
+    color: white;
+    background: blueviolet;
+}
+
 .app {
     width: 100%;
     min-height: 500vh;
@@ -67,12 +78,19 @@ html {
     // visibility: hidden;
 }
 
-.s2textContainer {
-    width: fit-content;
-    margin: 0 auto;
+.particles__container {
+    position: relative;
 }
 
 .section__two {
+    pointer-events: none;
     position: relative;
     padding: 30vh 21vw;
+}
+
+.s2textContainer {
+    pointer-events: all;
+    width: fit-content;
+    margin: auto;
+    align-self: center;
 }
