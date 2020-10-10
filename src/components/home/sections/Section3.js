@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { motion, useTransform, AnimatePresence } from "framer-motion"
-import { Section } from "../styled/textElements"
+import { Section } from "../../styled/textElements"
 import Title from "../../elements/Title"
 import Paragraph from "../../elements/Paragraph"
 
