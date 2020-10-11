@@ -17,16 +17,16 @@ export let variants = {
     opacityVisible: {
         opacity: 1,
         transition: {
-            delay: 0.6,
-            duration: 0.9,
+            delay: 0.4,
+            duration: 0.5,
             ease: "easeOut",
         },
     },
     opacityVisible2: {
         opacity: 1,
         transition: {
-            duration: 0.9,
-            ease: "easeOut",
+            duration: 0.25,
+            ease: "easeInOut",
         },
     },
     visible: {
@@ -35,7 +35,7 @@ export let variants = {
         transition: {
             duration: 0.5,
             ease: "easeOut",
-            staggerChildren: 0.25,
+            staggerChildren: 0.2,
         },
     },
 }

@@ -1,0 +1,49 @@
+.section__three {
+    margin-top: -25vh;
+
+    .images_container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        .portImage1,
+        .portImage2,
+        .portImage3 {
+            position: relative;
+
+            img {
+                border-radius: 3px;
+            }
+        }
+
+
+        .portImage1 {
+            // border: 2px solid red;
+            width: 50%;
+            order: 1;
+            z-index: 0;
+        }
+
+        .portImage2 {
+            width: 70%;
+            order: 2;
+            z-index: 1;
+        }
+
+        .portImage3 {
+            width: 90%;
+            order: 3;
+            z-index: 2;
+        }
+    }
+
+    .s3textContainer {
+        pointer-events: all;
+        width: fit-content;
+        margin: auto;
+        padding: 0 21vw;
+    }
+}

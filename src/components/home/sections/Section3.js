@@ -7,19 +7,34 @@ import Paragraph from "../../elements/Paragraph"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
+// static files
+import "../../../styles/components/home/section3.scss"
+
 export default (props) => {
-    const scrollDistance = [0.35, 0.45]
+    const scrollDistance = [0.26, 0.4]
+    // const scrollDistance2 = [0.25, 0.35]
     const progress = useTransform(props.scrollYProgress, scrollDistance, [
         0,
         100,
     ])
+    const portImg1Up = useTransform(props.scrollYProgress, scrollDistance, [
+        "160%",
+        "80%",
+    ])
+    const portImg2Up = useTransform(props.scrollYProgress, scrollDistance, [
+        "65%",
+        "25%",
+    ])
     const [state, setState] = useState(false)
+    const [imagesState, setImagesState] = useState(false)
     useEffect(() => {
         progress.onChange(() => {
-            progress.get() >= 30 ? setState(true) : setState(false)
+            // console.log(progress.get())
+            progress.get() >= 0 ? setImagesState(true) : setImagesState(false)
+            progress.get() >= 80 ? setState(true) : setState(false)
         })
 
-        window.scrollY >= 1600 && setState(true)
+        // window.scrollY >= 1600 && setState(true)
         // console.log(window.scrollY)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -28,10 +43,11 @@ export default (props) => {
             allHomeImagesJson {
                 edges {
                     node {
+                        id
                         title
                         image {
                             childImageSharp {
-                                fluid {
+                                fluid(maxWidth: 2560) {
                                     ...GatsbyImageSharpFluid_withWebp
                                 }
                             }
@@ -45,14 +61,30 @@ export default (props) => {
     const images = data.allHomeImagesJson.edges
 
     const gatsbyImages = images.map(({ node: image }) => {
+        const id = image.id
         const title = image.title
         const imageData = image.image.childImageSharp.fluid
 
-        return <Img fluid={imageData} alt={title} />
+        return (
+            <motion.div
+                className={`portImage${id}`}
+                id={id}
+                variants={props.variants}
+                initial="opacityHidden"
+                animate={imagesState && "opacityVisible2"}
+                style={{
+                    y: (id == 2 && portImg2Up) || (id == 1 && portImg1Up),
+                }}
+                key={id}
+            >
+                <Img fluid={imageData} alt={title} />
+            </motion.div>
+        )
     })
 
     return (
-        <Section className="particle__section">
+        <Section noPadding className="particle__section section__three">
+            <div className="images_container">{gatsbyImages}</div>
             <AnimatePresence>
                 {state && (
                     <motion.div
@@ -60,9 +92,8 @@ export default (props) => {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="s2textContainer"
+                        className="s3textContainer"
                     >
-                        {gatsbyImages}
                         <Title variants={props.childVariants} value="Work" />
                         <Paragraph
                             variants={props.variants}

@@ -1,13 +1,16 @@
 [
     {
+        "id": 3,
         "title": "Portfolio Image 3",
         "image": "./home/section3/port3.jpg"
     },
     {
+        "id": 2,
         "title": "Portfolio Image 2",
         "image": "./home/section3/port2.jpg"
     },
     {
+        "id": 1,
         "title": "Portfolio Image 1",
         "image": "./home/section3/port1.jpg"
     }

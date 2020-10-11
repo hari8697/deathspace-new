@@ -4,7 +4,7 @@ import { breakpoints } from "./utils"
 
 export const Section = styled(motion.div)`
     position: relative;
-    padding: 30vh 21vw;
+    padding: ${(props) => (props.noPadding ? "0" : "30vh 21vw")};
 `
 
 export const Title = styled(motion.h1)`
@@ -39,7 +39,6 @@ export const TitleEl = styled(motion.h1)`
     color: #fff;
     opacity: 0.4;
     width: auto;
-
     ${breakpoints("font-size", "rem", [
         { 0: 1.72 },
         { 450: 2 },
