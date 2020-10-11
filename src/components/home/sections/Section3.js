@@ -4,7 +4,10 @@ import { Section } from "../../styled/textElements"
 import Title from "../../elements/Title"
 import Paragraph from "../../elements/Paragraph"
 
-const Section3 = (props) => {
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
+
+export default (props) => {
     const scrollDistance = [0.35, 0.45]
     const progress = useTransform(props.scrollYProgress, scrollDistance, [
         0,
@@ -20,6 +23,33 @@ const Section3 = (props) => {
         // console.log(window.scrollY)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    const data = useStaticQuery(graphql`
+        {
+            allHomeImagesJson {
+                edges {
+                    node {
+                        title
+                        image {
+                            childImageSharp {
+                                fluid {
+                                    ...GatsbyImageSharpFluid_withWebp
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
+
+    const images = data.allHomeImagesJson.edges
+
+    const gatsbyImages = images.map(({ node: image }) => {
+        const title = image.title
+        const imageData = image.image.childImageSharp.fluid
+
+        return <Img fluid={imageData} alt={title} />
+    })
 
     return (
         <Section className="particle__section">
@@ -32,6 +62,7 @@ const Section3 = (props) => {
                         exit="hidden"
                         className="s2textContainer"
                     >
+                        {gatsbyImages}
                         <Title variants={props.childVariants} value="Work" />
                         <Paragraph
                             variants={props.variants}
@@ -51,5 +82,3 @@ const Section3 = (props) => {
         </Section>
     )
 }
-
-export default Section3

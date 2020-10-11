@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Portfolio Image 3",
+        "image": "./home/section3/port3.jpg"
+    },
+    {
+        "title": "Portfolio Image 2",
+        "image": "./home/section3/port2.jpg"
+    },
+    {
+        "title": "Portfolio Image 1",
+        "image": "./home/section3/port1.jpg"
+    }
+]
