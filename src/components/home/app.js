@@ -44,20 +44,16 @@ const App = () => {
                     childVariants={childVariants}
                 ></Section2>
 
-                <Suspense fallback={renderLoader()}>
-                    <Section3
-                        scrollYProgress={scrollYProgress}
-                        variants={variants}
-                        childVariants={childVariants}
-                    ></Section3>
-                </Suspense>
-                <Suspense fallback={renderLoader()}>
-                    <Section4
-                        scrollYProgress={scrollYProgress}
-                        variants={variants}
-                        childVariants={childVariants}
-                    ></Section4>
-                </Suspense>
+                <Section3
+                    scrollYProgress={scrollYProgress}
+                    variants={variants}
+                    childVariants={childVariants}
+                ></Section3>
+                <Section4
+                    scrollYProgress={scrollYProgress}
+                    variants={variants}
+                    childVariants={childVariants}
+                ></Section4>
             </div>
         </div>
     )
