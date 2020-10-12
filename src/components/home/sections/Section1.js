@@ -6,6 +6,9 @@ import {
     AnimatePresence,
 } from "framer-motion"
 
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
+
 //Hooks
 import useWindowSize from "../../../hooks/useWindowSize"
 
@@ -14,11 +17,48 @@ import useWindowSize from "../../../hooks/useWindowSize"
 //static files
 import "../../../styles/components/home/section1.scss"
 import logo from "../../../images/Deathspace-logo-white.svg"
-import background from "../../../images/background.png"
+// import background from "../../../images/background.png"
 import scrollArrow from "../../../images/scrollArrow.svg"
 import video from "../../../images/video.mp4"
 
-const Section1 = () => {
+const Section1 = (props) => {
+    const data = useStaticQuery(graphql`
+        {
+            allHeroImageJson {
+                edges {
+                    node {
+                        id
+                        title
+                        image {
+                            childImageSharp {
+                                fluid(maxWidth: 5120) {
+                                    ...GatsbyImageSharpFluid_withWebp
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `)
+    const heroImage = data.allHeroImageJson.edges
+    const gatsbyImage = heroImage.map(({ node: image }) => {
+        const id = image.id
+        const title = image.title
+        const imageData = image.image.childImageSharp.fluid
+
+        return (
+            <motion.div
+                variants={props.variants}
+                initial={"hidden"}
+                animate={"visible"}
+                className="bg"
+                key={id}
+            >
+                <Img fluid={imageData} alt={title} />
+            </motion.div>
+        )
+    })
     const windowSize = {
         width: useWindowSize().width,
         height: useWindowSize().height,
@@ -121,14 +161,15 @@ const Section1 = () => {
             {/* )} */}
             {/* </AnimatePresence> */}
             <div className="wrapper">
-                <motion.img
+                {/* <motion.img
                     src={background}
                     alt=""
                     variants={variants}
                     initial={"hidden"}
                     animate={"visible"}
                     className="bg"
-                />
+                /> */}
+                {gatsbyImage}
                 <video
                     className="bg"
                     autoPlay

@@ -25,19 +25,21 @@ export default (props) => {
         "65%",
         "25%",
     ])
+
     const [state, setState] = useState(false)
     const [imagesState, setImagesState] = useState(false)
     useEffect(() => {
         progress.onChange(() => {
-            // console.log(progress.get())
-            progress.get() >= 0 ? setImagesState(true) : setImagesState(false)
-            progress.get() >= 80 ? setState(true) : setState(false)
+            console.log(progress.get())
+            progress.get() > 0 ? setImagesState(true) : setImagesState(false)
+            progress.get() >= 50 ? setState(true) : setState(false)
         })
 
         // window.scrollY >= 1600 && setState(true)
         // console.log(window.scrollY)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
     const data = useStaticQuery(graphql`
         {
             allHomeImagesJson {
@@ -68,14 +70,10 @@ export default (props) => {
         return (
             <motion.div
                 className={`portImage${id}`}
-                id={id}
-                variants={props.variants}
-                initial="opacityHidden"
-                animate={imagesState && "opacityVisible2"}
                 style={{
                     y: (id == 2 && portImg2Up) || (id == 1 && portImg1Up),
                 }}
-                key={id}
+                key={title}
             >
                 <Img fluid={imageData} alt={title} />
             </motion.div>
@@ -84,30 +82,45 @@ export default (props) => {
 
     return (
         <Section noPadding className="particle__section section__three">
-            <div className="images_container">{gatsbyImages}</div>
             <AnimatePresence>
-                {state && (
-                    <motion.div
-                        variants={props.variants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        className="s3textContainer"
-                    >
-                        <Title variants={props.childVariants} value="Work" />
-                        <Paragraph
+                {imagesState && (
+                    <>
+                        <motion.div
+                            className="images_container"
                             variants={props.variants}
-                            value={
-                                <>
-                                    Okay, enough chit-chat, where's the proof
-                                    you ask?
-                                    <br />
-                                    Here are some of my selected projects for
-                                    your viewing pleasure.
-                                </>
-                            }
-                        />
-                    </motion.div>
+                            initial="opacityHidden"
+                            animate={imagesState && "opacityVisible2"}
+                            exit="opacityHidden"
+                        >
+                            {gatsbyImages}
+                        </motion.div>
+                        {state && (
+                            <motion.div
+                                variants={props.variants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
+                                className="s3textContainer"
+                            >
+                                <Title
+                                    variants={props.childVariants}
+                                    value="Work"
+                                />
+                                <Paragraph
+                                    variants={props.variants}
+                                    value={
+                                        <>
+                                            Okay, enough chit-chat, where's the
+                                            proof you ask?
+                                            <br />
+                                            Here are some of my selected
+                                            projects for your viewing pleasure.
+                                        </>
+                                    }
+                                />
+                            </motion.div>
+                        )}
+                    </>
                 )}
             </AnimatePresence>
         </Section>

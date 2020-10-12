@@ -29,6 +29,7 @@ const App = () => {
                     width="100%"
                     height="200vh"
                     params={particlesJSON}
+                    variants={variants}
                 />
                 <Section2
                     scrollYProgress={scrollYProgress}
