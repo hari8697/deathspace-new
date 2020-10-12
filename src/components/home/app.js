@@ -1,4 +1,4 @@
-import React, { lazy } from "react"
+import React, { lazy, Suspense } from "react"
 import { useViewportScroll } from "framer-motion"
 import Particles from "react-particles-js"
 // const Particles = lazy(() => import("react-particles-js"))
@@ -13,8 +13,11 @@ import Section1 from "./sections/Section1"
 import Section2 from "./sections/Section2"
 // const Section2 = lazy(() => import("./sections/Section2"))
 // import Section3 from "./sections/Section3"
+
+const renderLoader = () => <p>Loading</p>
 const Section3 = lazy(() => import("./sections/Section3"))
-import Section4 from "./sections/Section4"
+const Section4 = lazy(() => import("./sections/Section4"))
+// import Section4 from "./sections/Section4"
 // const Section4 = lazy(() => import("./sections/Section4"))
 
 const App = () => {
@@ -40,16 +43,19 @@ const App = () => {
                     variants={variants}
                     childVariants={childVariants}
                 ></Section2>
-                <Section3
-                    scrollYProgress={scrollYProgress}
-                    variants={variants}
-                    childVariants={childVariants}
-                ></Section3>
-                <Section4
-                    scrollYProgress={scrollYProgress}
-                    variants={variants}
-                    childVariants={childVariants}
-                ></Section4>
+
+                <Suspense fallback={renderLoader()}>
+                    <Section3
+                        scrollYProgress={scrollYProgress}
+                        variants={variants}
+                        childVariants={childVariants}
+                    ></Section3>
+                    <Section4
+                        scrollYProgress={scrollYProgress}
+                        variants={variants}
+                        childVariants={childVariants}
+                    ></Section4>
+                </Suspense>
             </div>
         </div>
     )
