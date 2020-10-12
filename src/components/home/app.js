@@ -50,6 +50,8 @@ const App = () => {
                         variants={variants}
                         childVariants={childVariants}
                     ></Section3>
+                </Suspense>
+                <Suspense fallback={renderLoader()}>
                     <Section4
                         scrollYProgress={scrollYProgress}
                         variants={variants}

@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet"
 export default function Index() {
     return (
         <div className="app">
-            <Helmet htmlAttributes="en">
+            <Helmet htmlAttributes={{ lang: "en" }}>
                 <meta charSet="utf-8" />
                 <title>DeathSpace</title>
             </Helmet>
