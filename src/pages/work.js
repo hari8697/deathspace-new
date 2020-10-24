@@ -1,5 +1,5 @@
 import React from "react"
-import App from "../components/portfolio/app"
+import App from "../components/portfolio/App"
 import { Helmet } from "react-helmet"
 
 export default function Index() {
