@@ -9,7 +9,7 @@ const Paragraph = (props) => {
             animate={props.animate && props.animate}
             exit={props.exit && props.exit}
         >
-            {props.value}
+            {props.children}
         </Para>
     )
 }

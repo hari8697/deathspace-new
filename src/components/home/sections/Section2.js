@@ -32,26 +32,25 @@ const Section2 = (props) => {
                         exit="hidden"
                         className="s2textContainer"
                     >
-                        <Title
-                            variants={props.variants}
-                            value="Design,"
-                        ></Title>
-                        <Title
-                            variants={props.childVariants}
-                            value="with purpose."
-                        ></Title>
+                        <Title variants={props.variants} value="">
+                            Design,
+                        </Title>
+                        <Title variants={props.childVariants} value="">
+                            with purpose.
+                        </Title>
                         <Paragraph
                             variants={props.variants}
-                            initial="opacityHidden"
-                            animate="opacityVisible"
-                            value="Hi! I'm DeathSpace, a front-end web developer &
+                            // initial="opacityHidden"
+                            // animate="opacityVisible"
+                        >
+                            Hi! I'm DeathSpace, a front-end web developer &
                             UI/UX enthusiast from Bangalore, India. I specialize
                             in creating websites for businesses that are
                             tailored to their needs, with pixel-perfect code.
                             Oh, and I have a serious passion for making neat
                             animations. Please have a look around & don't forget
-                            to play with the stars!"
-                        ></Paragraph>
+                            to play with the stars!
+                        </Paragraph>
                     </motion.div>
                 )}
             </AnimatePresence>

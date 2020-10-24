@@ -1,17 +1,17 @@
 import React from "react"
-import { TitleEl } from "../styled/textElements"
+import { Butt } from "../styled/Buttons"
 
-const Title = (props) => {
+const Button = (props) => {
     return (
-        <TitleEl
+        <Butt
             variants={props.variants}
             initial={props.initial && props.initial}
             animate={props.animate && props.animate}
             exit={props.exit && props.exit}
         >
             {props.children}
-        </TitleEl>
+        </Butt>
     )
 }
 
-export default Title
+export default Button

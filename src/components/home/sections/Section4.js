@@ -5,7 +5,7 @@ import Title from "../../elements/Title"
 import ProcessIcons from "../../elements/ProcessIcons"
 
 const Section4 = (props) => {
-    const scrollDistance = [0.55, 0.65]
+    const scrollDistance = [0.5, 0.6]
     const progress = useTransform(props.scrollYProgress, scrollDistance, [
         0,
         100,
@@ -32,8 +32,7 @@ const Section4 = (props) => {
                         exit="hidden"
                         className=""
                     >
-                        <Title variants={props.childVariants} value="Process" />
-
+                        <Title variants={props.childVariants}>Process</Title>
                         <ProcessIcons />
                     </motion.div>
                 )}
