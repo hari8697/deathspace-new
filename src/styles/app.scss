@@ -1,99 +1,98 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-family: "Avenir", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    background: #0D0020;
-    color: #fff;
+  font-family: "Avenir", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  background: #090113;
+  color: #fff;
 }
 
 ::-moz-selection {
-    /* Code for Firefox */
-    color: white;
-    background: blueviolet;
+  /* Code for Firefox */
+  color: white;
+  background: blueviolet;
 }
 
 ::selection {
-    color: white;
-    background: blueviolet;
+  color: white;
+  background: blueviolet;
 }
 
 .app {
-    width: 100%;
-    min-height: 500vh;
+  width: 100%;
+  min-height: 500vh;
 }
 
-
 .circle_wrapper {
-    position: relative;
-    display: grid;
-    max-width: 800px;
-    min-width: 225px;
-    grid-gap: 25px;
-    grid-template-columns: repeat(auto-fit, 100px);
+  position: relative;
+  display: grid;
+  max-width: 800px;
+  min-width: 225px;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fit, 100px);
 }
 
 .circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid blueviolet;
-    cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid blueviolet;
+  cursor: pointer;
 
-    &.one {
-        order: 1;
-    }
+  &.one {
+    order: 1;
+  }
 
-    &.two {
-        order: 1;
-    }
+  &.two {
+    order: 1;
+  }
 
-    &.three {
-        order: 3;
-    }
+  &.three {
+    order: 3;
+  }
 
-    &:hover,
-    &:focus,
-    &.sel {
-        background: blueviolet;
-    }
+  &:hover,
+  &:focus,
+  &.sel {
+    background: blueviolet;
+  }
 }
 
 .nothing {
-    order: 1;
+  order: 1;
 }
 
 .rect {
-    position: absolute;
-    top: -25%;
-    left: -25%;
-    width: 150%;
-    height: 150%;
-    border-radius: 10px;
-    background: blueviolet;
-    // visibility: hidden;
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  border-radius: 10px;
+  background: blueviolet;
+  // visibility: hidden;
 }
 
 .particles__container {
-    position: relative;
+  position: relative;
 }
 
 .particle__section {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .section__two {
-    position: relative;
-    padding: 30vh 21vw;
+  position: relative;
+  padding: 40vh 21vw;
 }
 
 .s2textContainer {
-    pointer-events: all;
-    width: fit-content;
-    margin: auto;
-    align-self: center;
+  pointer-events: all;
+  width: fit-content;
+  margin: auto;
+  align-self: center;
 }

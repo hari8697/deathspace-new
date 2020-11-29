@@ -1,49 +1,103 @@
 .section__three {
-    margin-top: -25vh;
+  margin-top: -25vh;
 
-    .images_container {
-        position: relative;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 2rem;
+  .images_container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
 
-        .portImage1,
-        .portImage2,
-        .portImage3 {
-            position: relative;
+    .portImage1,
+    .portImage2,
+    .portImage3 {
+      position: relative;
 
-            img {
-                border-radius: 3px;
-            }
-        }
-
-
-        .portImage1 {
-            // border: 2px solid red;
-            width: 50%;
-            order: 1;
-            z-index: 0;
-        }
-
-        .portImage2 {
-            width: 70%;
-            order: 2;
-            z-index: 1;
-        }
-
-        .portImage3 {
-            width: 90%;
-            order: 3;
-            z-index: 2;
-        }
+      img {
+        border-radius: 3px;
+      }
     }
+
+    .portImage1 {
+      // border: 2px solid red;
+      width: 50%;
+      order: 1;
+      z-index: 0;
+    }
+
+    .portImage2 {
+      width: 70%;
+      order: 2;
+      z-index: 1;
+    }
+
+    .portImage3 {
+      width: 90%;
+      order: 3;
+      z-index: 2;
+    }
+  }
+
+  .s3textContainer {
+    pointer-events: all;
+    width: fit-content;
+    margin: auto;
+    padding: 0 21vw;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .section__three {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 10vh 10vw;
 
     .s3textContainer {
-        pointer-events: all;
-        width: fit-content;
-        margin: auto;
-        padding: 0 21vw;
+      padding: 0;
+      margin: 0;
+      // margin-left: auto;
+      min-width: 150px;
     }
+
+    .images_container {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 40%;
+      // margin: 0 0 0 4%;
+      margin: 0;
+      // margin-right: auto;
+      // margin-left: 200px;
+
+      .portImage1,
+      .portImage2,
+      .portImage3 {
+        width: 90%;
+
+        img {
+          border-radius: 3px;
+        }
+      }
+      .portImage3 {
+        width: 90%;
+        min-width: 280px;
+        max-width: 450px;
+        order: 1;
+        z-index: 2;
+      }
+
+      .portImage2 {
+        width: 70%;
+        min-width: 220px;
+        max-width: 350px;
+        order: 2;
+        z-index: 1;
+        margin-left: -4%;
+      }
+    }
+  }
 }

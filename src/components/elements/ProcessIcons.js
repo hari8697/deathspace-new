@@ -21,6 +21,7 @@ const ProcessIcons = () => {
                         className={
                             selectedId === item.id ? "circle sel" : "circle"
                         }
+                        key={item.id}
                     ></motion.div>
                 ))}
 
