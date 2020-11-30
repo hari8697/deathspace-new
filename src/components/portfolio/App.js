@@ -57,51 +57,65 @@ const App = () => {
   }
 
   return (
-    <>
-      <div className="bh_container">
-        <AnimatePresence>
-          {!completed && (
-            <>
-              <motion.div className="bh__bg">
-                <motion.img
-                  variants={variants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="leave"
-                  src={Ellipse}
-                  alt=""
-                />
-                <motion.img
-                  variants={variants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="leave"
-                  src={Ellipse2}
-                  alt=""
-                />
-              </motion.div>
-              <motion.div
-                className="blur__layer"
+    <div className="bh_container">
+      <AnimatePresence>
+        {!completed && (
+          <>
+            <motion.div className="bh__bg">
+              <motion.img
                 variants={variants}
+                initial="hidden"
+                animate="visible"
                 exit="leave"
-              ></motion.div>
-            </>
-          )}
-        </AnimatePresence>
+                src={Ellipse}
+                alt=""
+              />
+              <motion.img
+                variants={variants}
+                initial="hidden"
+                animate="visible"
+                exit="leave"
+                src={Ellipse2}
+                alt=""
+              />
+            </motion.div>
+            <motion.div
+              className="blur__layer"
+              variants={variants}
+              exit="leave"
+            ></motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
-        <div className="bh__center">
-          <motion.div
-            className="loader"
-            initial={{ height: "0%" }}
-            animate={{ height: "80%" }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            style={{ height: completed && progress }}
-            onAnimationComplete={onComplete}
-          ></motion.div>
-        </div>
-      </div>
-      <h1>Hello</h1>
-    </>
+      <motion.div
+        className="bh__center"
+        initial={{ scale: 1 }}
+        // animate={{ scale: 2 }}
+        animate={{ scale: completed ? [1, 1.4, 1.4, 0.3] : 1 }}
+        transition={{
+          type: "spring",
+          delay: 0.2,
+          stiffness: 500,
+          damping: 18,
+        }}
+      >
+        <motion.div
+          className="loader"
+          initial={{ height: "0%", border: "0px" }}
+          animate={{ height: "100%", border: "1px" }}
+          transition={{
+            type: "spring",
+            delay: 5,
+            stiffness: 150,
+            damping: 20,
+            mass: 1,
+          }}
+          // style={{ height: completed && progress }}
+          onAnimationComplete={onComplete}
+        ></motion.div>
+      </motion.div>
+    </div>
   )
 }
 
