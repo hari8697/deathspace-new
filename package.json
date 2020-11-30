@@ -27,7 +27,7 @@
     "devDependencies": {
         "prettier": "2.1.2"
     },
-    "keywords": [
+    "keywords": [   
         "gatsby"
     ],
     "license": "0BSD",

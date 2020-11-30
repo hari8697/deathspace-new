@@ -6,27 +6,34 @@ import {
   useViewportScroll,
   useMotionValue,
   useSpring,
+  useAnimation,
 } from "framer-motion"
 
 import Ellipse from "../../images/blackhole/Ellipse.svg"
 import Ellipse2 from "../../images/blackhole/Ellipse 2.svg"
+import Logo from "../../images/blackhole/Logo.svg"
 
 import "../../styles/components/blackhole/style.scss"
+import { Img } from "gatsby-image"
 
 const App = () => {
   const x = useMotionValue(80)
   const [counter, setCounter] = useState(80)
   const [completed, setCompleted] = useState(false)
+  const [covered, setCovered] = useState(false)
   const progress = useTransform(x, [80, 100], ["80%", "100%"])
+  const controls = useAnimation()
+  const controls2 = useAnimation()
 
   useEffect(() => {
     x.set(counter)
     console.log(progress.get())
   }, [counter])
 
-  const onComplete = () => {
+  const onLoadComplete = () => {
     setTimeout(() => {
       setCompleted(true)
+      loadCompleteMethod()
     }, 300)
     const interval = setInterval(() => {
       setCounter((counter) => {
@@ -37,6 +44,60 @@ const App = () => {
     }, 20)
   }
 
+  const loadCompleteMethod = async () => {
+    await controls2.start("visible")
+    setCovered(true)
+
+    const sequence = async () => {
+      return await controls.start("shrinkDot")
+    }
+    const sequence2 = async () => {
+      controls.start("move")
+      controls2.start("moveCover")
+      return
+    }
+    sequence().then(() => {
+      sequence2()
+    })
+  }
+  const dotVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0.2,
+      },
+    },
+    shrinkDot: {
+      scale: completed ? [1, 1.4, 1.4, 0.4] : 1,
+      transition: {
+        type: "spring",
+        delay: 0.2,
+        stiffness: 500,
+        damping: 18,
+      },
+    },
+    move: {
+      y: completed && "30%",
+      x: completed && "24vw",
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 70,
+      },
+    },
+    moveCover: {
+      y: completed && "30vh",
+      x: completed && "100vw",
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 70,
+      },
+    },
+  }
   const variants = {
     hidden: { rotate: 0, scale: 0.2 },
     visible: {
@@ -88,33 +149,49 @@ const App = () => {
         )}
       </AnimatePresence>
 
-      <motion.div
-        className="bh__center"
-        initial={{ scale: 1 }}
-        // animate={{ scale: 2 }}
-        animate={{ scale: completed ? [1, 1.4, 1.4, 0.3] : 1 }}
-        transition={{
-          type: "spring",
-          delay: 0.2,
-          stiffness: 500,
-          damping: 18,
-        }}
-      >
+      <div className="logo__container">
+        {completed && (
+          <>
+            <motion.img
+              src={Logo}
+              variants={dotVariants}
+              initial="hidden"
+              animate={covered && "visible"}
+              alt=""
+            />
+            <motion.span
+              className="logo__cover"
+              // initial={{ x: "-50%", y: "-50%" }}
+              variants={dotVariants}
+              initial="hidden"
+              animate={controls2}
+            ></motion.span>{" "}
+          </>
+        )}
+
         <motion.div
-          className="loader"
-          initial={{ height: "0%", border: "0px" }}
-          animate={{ height: "100%", border: "1px" }}
-          transition={{
-            type: "spring",
-            delay: 5,
-            stiffness: 150,
-            damping: 20,
-            mass: 1,
-          }}
-          // style={{ height: completed && progress }}
-          onAnimationComplete={onComplete}
-        ></motion.div>
-      </motion.div>
+          className="bh__center"
+          variants={dotVariants}
+          initial={{ scale: 1 }}
+          // animate={{ scale: 2 }}
+          animate={controls}
+        >
+          <motion.div
+            className="loader"
+            initial={{ height: "0%", border: "0px" }}
+            animate={{ height: "100%", border: "1px" }}
+            transition={{
+              type: "spring",
+              delay: 2,
+              stiffness: 150,
+              damping: 20,
+              mass: 1,
+            }}
+            // style={{ height: completed && progress }}
+            onAnimationComplete={onLoadComplete}
+          ></motion.div>
+        </motion.div>
+      </div>
     </div>
   )
 }
